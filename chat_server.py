@@ -23,8 +23,9 @@ log = logging.getLogger("chat")
 connected: dict = {}
 history:   list = []
 MAX_HISTORY = 50
-HOST = "localhost"
-PORT = 8765
+import os
+   HOST = "0.0.0.0"
+   PORT = int(os.environ.get("PORT", 8765))
 
 def now_ts(): return datetime.now().strftime("%H:%M:%S")
 def packet(kind, **kw): return json.dumps({"type": kind, "ts": now_ts(), **kw})
